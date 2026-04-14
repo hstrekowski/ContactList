@@ -1,0 +1,54 @@
+# =========================
+# .NET / ASP.NET Core
+# =========================
+[Bb]in/
+[Oo]bj/
+*.nupkg
+**/[Pp]ackages/
+
+# =========================
+# IDE / Editor
+# =========================
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+
+# =========================
+# Secrets & Configuration
+# =========================
+appsettings.Local.json
+appsettings.Production.json
+secrets.json
+.env
+.env.*
+*.pfx
+*.pem
+*.key
+*.p12
+
+# =========================
+# Database
+# =========================
+*.mdf
+*.ldf
+
+# =========================
+# Angular / Node.js
+# =========================
+client/node_modules/
+client/dist/
+client/.angular/
+
+# =========================
+# Tests
+# =========================
+**/TestResults/
+**/coverage/
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db

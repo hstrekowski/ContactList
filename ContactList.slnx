@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ContactList.Api/ContactList.Api.csproj" />
+    <Project Path="src/ContactList.Application/ContactList.Application.csproj" />
+    <Project Path="src/ContactList.Domain/ContactList.Domain.csproj" />
+    <Project Path="src/ContactList.Infrastructure/ContactList.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ContactList.Application.Tests/ContactList.Application.Tests.csproj" />
+    <Project Path="tests/ContactList.Domain.Tests/ContactList.Domain.Tests.csproj" />
+    <Project Path="tests/ContactList.Infrastructure.Tests/ContactList.Infrastructure.Tests.csproj" />
+  </Folder>
+</Solution>

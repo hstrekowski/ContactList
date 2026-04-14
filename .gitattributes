@@ -1,0 +1,72 @@
+# Auto detect text files and normalize line endings
+* text=auto
+
+# =========================
+# .NET / C#
+# =========================
+*.cs        text diff=csharp
+*.csproj    text
+*.sln       text eol=crlf
+*.slnx      text eol=crlf
+*.config    text
+*.json      text
+*.xml       text
+*.resx      text
+
+# =========================
+# Angular / Web
+# =========================
+*.ts        text diff=typescript
+*.tsx       text diff=typescript
+*.js        text
+*.jsx       text
+*.html      text diff=html
+*.css       text diff=css
+*.scss      text diff=css
+*.less      text diff=css
+*.svg       text
+*.map       text
+
+# =========================
+# Config / CI
+# =========================
+*.yml       text
+*.yaml      text
+*.md        text diff=markdown
+*.txt       text
+*.sh        text eol=lf
+*.bash      text eol=lf
+*.cmd       text eol=crlf
+*.bat       text eol=crlf
+*.ps1       text eol=crlf
+Makefile    text eol=lf
+Dockerfile  text
+
+# =========================
+# Lock files - do not diff
+# =========================
+package-lock.json   text -diff linguist-generated
+yarn.lock           text -diff linguist-generated
+
+# =========================
+# Binary files
+# =========================
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.webp      binary
+*.woff      binary
+*.woff2     binary
+*.ttf       binary
+*.eot       binary
+*.otf       binary
+*.pdf       binary
+*.zip       binary
+*.gz        binary
+*.tar       binary
+*.dll       binary
+*.exe       binary
+*.pdb       binary
+*.pfx       binary
