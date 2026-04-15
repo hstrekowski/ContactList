@@ -20,7 +20,7 @@ namespace ContactList.Domain.Entities
             if (string.IsNullOrWhiteSpace(name))
                 throw new DomainException("Category name cannot be empty.");
 
-            Name = name;
+            Name = name.Trim();
         }
     }
 }

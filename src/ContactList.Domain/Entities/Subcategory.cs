@@ -22,7 +22,7 @@ namespace ContactList.Domain.Entities
             if (categoryId == Guid.Empty)
                 throw new DomainException("Category ID cannot be empty.");
 
-            Name = name;
+            Name = name.Trim();
             CategoryId = categoryId;
         }
 
@@ -33,7 +33,7 @@ namespace ContactList.Domain.Entities
             if (string.IsNullOrWhiteSpace(newName))
                 throw new DomainException("Subcategory name cannot be empty.");
 
-            Name = newName;
+            Name = newName.Trim();
         }
     }
 }
