@@ -1,5 +1,6 @@
 using ContactList.Domain.Common;
 using ContactList.Domain.Exceptions;
+using ContactList.Domain.ValueObjects;
 
 namespace ContactList.Domain.Entities
 {
@@ -10,9 +11,9 @@ namespace ContactList.Domain.Entities
     {
         public string FirstName { get; private set; } = string.Empty;
         public string LastName { get; private set; } = string.Empty;
-        public string Email { get; private set; } = string.Empty;
+        public Email Email { get; private set; } = null!;
         public string PasswordHash { get; private set; } = string.Empty;
-        public string PhoneNumber { get; private set; } = string.Empty;
+        public PhoneNumber PhoneNumber { get; private set; } = null!;
         public DateTime DateOfBirth { get; private set; }
 
         public Category Category { get; private set; } = null!;
@@ -26,9 +27,9 @@ namespace ContactList.Domain.Entities
         public Contact(
             string firstName,
             string lastName,
-            string email,
+            Email email,
             string passwordHash,
-            string phoneNumber,
+            PhoneNumber phoneNumber,
             DateTime dateOfBirth,
             Guid categoryId,
             Guid? subcategoryId) : base()
@@ -45,8 +46,8 @@ namespace ContactList.Domain.Entities
         public void Update(
             string firstName,
             string lastName,
-            string email,
-            string phoneNumber,
+            Email email,
+            PhoneNumber phoneNumber,
             DateTime dateOfBirth,
             Guid categoryId,
             Guid? subcategoryId)
@@ -77,12 +78,9 @@ namespace ContactList.Domain.Entities
             LastName = value.Trim();
         }
 
-        private void SetEmail(string value)
+        private void SetEmail(Email value)
         {
-            if (string.IsNullOrWhiteSpace(value))
-                throw new DomainException("Email cannot be empty.");
-
-            Email = value.Trim();
+            Email = value ?? throw new DomainException("Email is required.");
         }
 
         private void SetPasswordHash(string value)
@@ -93,12 +91,9 @@ namespace ContactList.Domain.Entities
             PasswordHash = value;
         }
 
-        private void SetPhoneNumber(string value)
+        private void SetPhoneNumber(PhoneNumber value)
         {
-            if (string.IsNullOrWhiteSpace(value))
-                throw new DomainException("Phone number cannot be empty.");
-
-            PhoneNumber = value.Trim();
+            PhoneNumber = value ?? throw new DomainException("Phone number is required.");
         }
 
         private void SetDateOfBirth(DateTime value)
