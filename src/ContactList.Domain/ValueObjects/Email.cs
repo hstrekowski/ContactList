@@ -11,7 +11,7 @@ namespace ContactList.Domain.ValueObjects
         private const int MaxLength = 254;
 
         private static readonly Regex EmailRegex = new(
-            @"^[a-zA-Z]+(\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$",
+            @"^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$",
             RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         public string Value { get; }

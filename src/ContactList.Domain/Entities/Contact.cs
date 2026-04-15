@@ -14,7 +14,7 @@ namespace ContactList.Domain.Entities
         public Email Email { get; private set; } = null!;
         public string PasswordHash { get; private set; } = string.Empty;
         public PhoneNumber PhoneNumber { get; private set; } = null!;
-        public DateTime DateOfBirth { get; private set; }
+        public DateOnly DateOfBirth { get; private set; }
 
         public Category Category { get; private set; } = null!;
         public Guid CategoryId { get; private set; }
@@ -30,7 +30,7 @@ namespace ContactList.Domain.Entities
             Email email,
             string passwordHash,
             PhoneNumber phoneNumber,
-            DateTime dateOfBirth,
+            DateOnly dateOfBirth,
             Guid categoryId,
             Guid? subcategoryId) : base()
         {
@@ -48,7 +48,7 @@ namespace ContactList.Domain.Entities
             string lastName,
             Email email,
             PhoneNumber phoneNumber,
-            DateTime dateOfBirth,
+            DateOnly dateOfBirth,
             Guid categoryId,
             Guid? subcategoryId)
         {
@@ -96,9 +96,9 @@ namespace ContactList.Domain.Entities
             PhoneNumber = value ?? throw new DomainException("Phone number is required.");
         }
 
-        private void SetDateOfBirth(DateTime value)
+        private void SetDateOfBirth(DateOnly value)
         {
-            if (value > DateTime.UtcNow)
+            if (value > DateOnly.FromDateTime(DateTime.UtcNow))
                 throw new DomainException("Date of birth cannot be in the future.");
 
             DateOfBirth = value;

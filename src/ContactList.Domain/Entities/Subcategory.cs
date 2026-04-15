@@ -16,13 +16,10 @@ namespace ContactList.Domain.Entities
         protected Subcategory() : base() { }
         public Subcategory(string name, Guid categoryId) : base()
         {
-            if (string.IsNullOrWhiteSpace(name))
-                throw new DomainException("Subcategory name cannot be empty.");
-
             if (categoryId == Guid.Empty)
                 throw new DomainException("Category ID cannot be empty.");
 
-            Name = name.Trim();
+            SetName(name);
             CategoryId = categoryId;
         }
 
