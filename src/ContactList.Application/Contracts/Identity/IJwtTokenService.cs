@@ -2,8 +2,6 @@ namespace ContactList.Application.Contracts.Identity
 {
     /// <summary>
     /// Issues signed JWT bearer tokens for authenticated users.
-    /// Implementation lives in the infrastructure layer to keep JWT
-    /// signing configuration out of the application layer.
     /// </summary>
     public interface IJwtTokenService
     {
