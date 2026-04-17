@@ -1,3 +1,4 @@
+using ContactList.Application.Common.Exceptions;
 using ContactList.Application.Contracts.Identity;
 using ContactList.Application.Features.Auth.Commands.Login;
 using FluentAssertions;
@@ -32,7 +33,7 @@ namespace ContactList.Application.Tests.Features.Auth.Commands.Login
         }
 
         [Fact]
-        public async Task Handle_ServiceReturnsNull_ThrowsUnauthorizedAccessException()
+        public async Task Handle_ServiceReturnsNull_ThrowsUnauthorizedException()
         {
             // Arrange
             _userService.Setup(s => s.LoginAsync(It.IsAny<AuthRequestDto>(), It.IsAny<CancellationToken>()))
@@ -44,7 +45,7 @@ namespace ContactList.Application.Tests.Features.Auth.Commands.Login
             var act = async () => await handler.Handle(command, CancellationToken.None);
 
             // Act & Assert
-            (await act.Should().ThrowAsync<UnauthorizedAccessException>())
+            (await act.Should().ThrowAsync<UnauthorizedException>())
                 .WithMessage("Invalid email or password.");
         }
     }
