@@ -88,3 +88,15 @@ namespace ContactList.Application.Tests.Features.Contacts.Queries.GetContactById
                 new Email(email),
                 "hash",
                 new PhoneNumber(phoneNumber),
+                new DateOnly(1990, 1, 1),
+                category.Id,
+                subcategoryId);
+
+            typeof(Contact).GetProperty(nameof(Contact.Category))!.SetValue(contact, category);
+            if (subcategory is not null)
+                typeof(Contact).GetProperty(nameof(Contact.Subcategory))!.SetValue(contact, subcategory);
+
+            return contact;
+        }
+    }
+}
