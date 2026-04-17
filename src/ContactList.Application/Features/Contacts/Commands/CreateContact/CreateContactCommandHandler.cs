@@ -119,9 +119,14 @@ namespace ContactList.Application.Features.Contacts.Commands.CreateContact
                     return newSubcategory.Id;
 
                 case PrivateCategoryName:
-                    if (request.SubcategoryId is not null || !string.IsNullOrWhiteSpace(request.SubcategoryName))
+                    if (request.SubcategoryId is not null)
                         throw BuildValidationException(
                             nameof(request.SubcategoryId),
+                            "Category 'Prywatny' does not allow a subcategory.");
+
+                    if (!string.IsNullOrWhiteSpace(request.SubcategoryName))
+                        throw BuildValidationException(
+                            nameof(request.SubcategoryName),
                             "Category 'Prywatny' does not allow a subcategory.");
 
                     return null;
