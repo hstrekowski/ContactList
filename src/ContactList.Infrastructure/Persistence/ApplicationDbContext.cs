@@ -6,9 +6,8 @@ using Microsoft.EntityFrameworkCore;
 namespace ContactList.Infrastructure.Persistence;
 
 /// <summary>
-/// Primary EF Core context for the application.
-/// Combines ASP.NET Identity user stores (no role tables — single-user scenario)
-/// with the contact list aggregates (<see cref="Contact"/>, <see cref="Category"/>, <see cref="Subcategory"/>).
+/// The main database context for the application. It integrates ASP.NET Identity for user management 
+/// with the core domain entities like contacts, categories, and subcategories.
 /// </summary>
 public class ApplicationDbContext : IdentityUserContext<ApplicationUser, Guid>
 {

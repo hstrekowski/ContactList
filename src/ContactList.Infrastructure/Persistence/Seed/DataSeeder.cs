@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ContactList.Infrastructure.Persistence.Seed;
 
 /// <summary>
-/// Idempotent database seeder for dictionary data (categories and Służbowy subcategories).
+/// Idempotent database seeder for dictionary data.
 /// Safe to run on every application startup — existing rows are detected by id.
 /// </summary>
 public static class DataSeeder

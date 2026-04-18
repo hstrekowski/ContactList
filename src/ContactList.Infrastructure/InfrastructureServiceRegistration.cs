@@ -11,13 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ContactList.Infrastructure;
-
-/// <summary>
-/// Composition root for the Infrastructure layer.
-/// Registers EF Core, ASP.NET Identity (user store only, no roles), JWT settings,
-/// repositories, unit of work, user service and password hasher.
-/// JWT bearer authentication middleware is wired in the API layer, not here.
-/// </summary>
 public static class InfrastructureServiceRegistration
 {
     public static IServiceCollection AddInfrastructureServices(

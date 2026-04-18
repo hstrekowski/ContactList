@@ -6,8 +6,6 @@ namespace ContactList.Infrastructure.Persistence.Configurations;
 
 /// <summary>
 /// EF Core mapping for <see cref="Subcategory"/>.
-/// The relationship to <see cref="Category"/> is configured on the owning side in
-/// <see cref="CategoryConfiguration"/>.
 /// </summary>
 public sealed class SubcategoryConfiguration : IEntityTypeConfiguration<Subcategory>
 {

@@ -7,7 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace ContactList.Infrastructure.Identity;
 
 /// <summary>
-/// Generates signed JSON Web Tokens for authenticated users using HMAC-SHA256.
+/// Handles the generation of signed JSON Web Tokens (JWT) using the HMAC-SHA256 algorithm.
 /// </summary>
 public sealed class JwtTokenService
 {
@@ -18,12 +18,6 @@ public sealed class JwtTokenService
         _settings = settings.Value;
     }
 
-    /// <summary>
-    /// Generates a signed JWT carrying the user identifier and email.
-    /// </summary>
-    /// <param name="userId">Unique identifier of the authenticated user (<c>sub</c> claim).</param>
-    /// <param name="email">Email address of the authenticated user (<c>email</c> claim).</param>
-    /// <returns>The serialized token and its UTC expiration timestamp.</returns>
     public (string Token, DateTime ExpiresAt) GenerateToken(Guid userId, string email)
     {
         var issuedAt = DateTime.UtcNow;

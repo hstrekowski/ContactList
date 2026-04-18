@@ -5,9 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ContactList.Infrastructure.Persistence.Repositories;
 
 /// <summary>
-/// EF Core implementation of <see cref="ICategoryRepository"/>.
-/// Reads eagerly include <see cref="Subcategory"/> entries so callers can
-/// project both dictionary levels in a single round-trip.
+/// EF Core implementation of ICategoryRepository. Eagerly loads subcategories to ensure both levels of the category hierarchy are retrieved in a single query.
 /// </summary>
 public sealed class CategoryRepository : ICategoryRepository
 {
