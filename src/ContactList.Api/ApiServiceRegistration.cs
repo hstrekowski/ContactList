@@ -6,11 +6,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace ContactList.Api;
-
-/// <summary>
-/// Composition root for the API layer. Registers concerns that belong strictly to
-/// the HTTP boundary
-/// </summary>
 public static class ApiServiceRegistration
 {
     public const string AngularCorsPolicy = "AllowAngularDevClient";

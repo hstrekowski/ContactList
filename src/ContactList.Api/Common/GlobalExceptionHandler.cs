@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ContactList.Api.Common;
 
 /// <summary>
-/// Centralized <see cref="IExceptionHandler"/> that translates application and domain
-/// exceptions into RFC 7807 <see cref="ProblemDetails"/> responses.
+/// Centralized exception handler that translates application and domain
 /// </summary>
 public sealed class GlobalExceptionHandler : IExceptionHandler
 {
@@ -17,13 +16,6 @@ public sealed class GlobalExceptionHandler : IExceptionHandler
     {
         _logger = logger;
     }
-
-    /// <summary>
-    /// Catches the exception, logs it with a severity matching the mapped HTTP status
-    /// (Warning for 4xx, Error for 5xx), and writes a <see cref="ProblemDetails"/> body.
-    /// Returns <c>false</c> if the response has already started so the framework can
-    /// fall back to terminating the connection.
-    /// </summary>
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext,
         Exception exception,
@@ -54,12 +46,6 @@ public sealed class GlobalExceptionHandler : IExceptionHandler
         await httpContext.Response.WriteAsJsonAsync(problem, cancellationToken);
         return true;
     }
-
-    /// <summary>
-    /// Maps a caught exception to its HTTP status code and a populated
-    /// <see cref="ProblemDetails"/> instance. Unknown exceptions collapse to a
-    /// generic 500 without leaking the underlying message.
-    /// </summary>
     private static (int Status, ProblemDetails Problem) Map(Exception exception) => exception switch
     {
         NotFoundException nf => (
