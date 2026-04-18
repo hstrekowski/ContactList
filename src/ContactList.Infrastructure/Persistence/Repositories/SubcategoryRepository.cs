@@ -25,9 +25,9 @@ public sealed class SubcategoryRepository : ISubcategoryRepository
             .ToListAsync(ct);
     }
 
-    public Task<bool> ExistsInCategoryAsync(Guid subcategoryId, Guid categoryId, CancellationToken ct = default)
+    public async Task<bool> ExistsInCategoryAsync(Guid subcategoryId, Guid categoryId, CancellationToken ct = default)
     {
-        return _db.Subcategories
+        return await _db.Subcategories
             .AsNoTracking()
             .AnyAsync(s => s.Id == subcategoryId && s.CategoryId == categoryId, ct);
     }

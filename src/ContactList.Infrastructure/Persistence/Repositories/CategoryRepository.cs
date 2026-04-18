@@ -27,9 +27,9 @@ public sealed class CategoryRepository : ICategoryRepository
             .ToListAsync(ct);
     }
 
-    public Task<Category?> GetByIdAsync(Guid id, CancellationToken ct = default)
+    public async Task<Category?> GetByIdAsync(Guid id, CancellationToken ct = default)
     {
-        return _db.Categories
+        return await _db.Categories
             .Include(c => c.Subcategories)
             .FirstOrDefaultAsync(c => c.Id == id, ct);
     }

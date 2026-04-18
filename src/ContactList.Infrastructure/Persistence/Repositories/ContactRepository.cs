@@ -19,9 +19,9 @@ public sealed class ContactRepository : IContactRepository
         _db = db;
     }
 
-    public Task<Contact?> GetByIdAsync(Guid id, CancellationToken ct = default)
+    public async Task<Contact?> GetByIdAsync(Guid id, CancellationToken ct = default)
     {
-        return _db.Contacts
+        return await _db.Contacts
             .Include(c => c.Category)
             .Include(c => c.Subcategory)
             .FirstOrDefaultAsync(c => c.Id == id, ct);
@@ -37,14 +37,14 @@ public sealed class ContactRepository : IContactRepository
             .ToListAsync(ct);
     }
 
-    public Task<bool> ExistsByEmailAsync(Email email, Guid? excludeContactId = null, CancellationToken ct = default)
+    public async Task<bool> ExistsByEmailAsync(Email email, Guid? excludeContactId = null, CancellationToken ct = default)
     {
         var query = _db.Contacts.AsNoTracking().Where(c => c.Email == email);
 
         if (excludeContactId.HasValue)
             query = query.Where(c => c.Id != excludeContactId.Value);
 
-        return query.AnyAsync(ct);
+        return await query.AnyAsync(ct);
     }
 
     public async Task AddAsync(Contact contact, CancellationToken ct = default)
