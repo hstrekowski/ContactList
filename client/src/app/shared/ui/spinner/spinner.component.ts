@@ -7,6 +7,7 @@ import { LoadingService } from './loading.service';
   templateUrl: './spinner.component.html',
   styleUrl: './spinner.component.css',
 })
-export class SpinnerComponent {
+export class SpinnerComponent
+{
   readonly isLoading = inject(LoadingService).isLoading;
 }

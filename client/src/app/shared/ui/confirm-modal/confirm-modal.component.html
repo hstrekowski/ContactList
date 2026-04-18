@@ -1,0 +1,22 @@
+<dialog #dialogRef class="confirm-dialog" (close)="onCancel()">
+  <div class="confirm-header">
+    <h2>{{ title() }}</h2>
+  </div>
+  <div class="confirm-body">
+    <p>{{ message() }}</p>
+  </div>
+  <div class="confirm-footer">
+    <button type="button" class="btn btn--ghost" (click)="onCancel()">
+      {{ cancelLabel() }}
+    </button>
+    <button
+      type="button"
+      class="btn"
+      [class.btn--danger]="danger()"
+      [class.btn--primary]="!danger()"
+      (click)="onConfirm()"
+    >
+      {{ confirmLabel() }}
+    </button>
+  </div>
+</dialog>
