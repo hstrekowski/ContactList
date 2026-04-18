@@ -6,9 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ContactList.Infrastructure.Persistence.Repositories;
 
 /// <summary>
-/// EF Core implementation of <see cref="IContactRepository"/>.
-/// Reads eagerly load <see cref="Category"/> and <see cref="Subcategory"/>
-/// so Application-layer mapping profiles can flatten them into DTOs.
+/// EF Core implementation of IContactRepository. Eagerly loads Category and Subcategory navigation properties to allow the Application layer to map them directly into DTOs.
 /// </summary>
 public sealed class ContactRepository : IContactRepository
 {

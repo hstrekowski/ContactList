@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ContactList.Infrastructure.Persistence.Repositories;
 
 /// <summary>
-/// EF Core implementation of <see cref="ISubcategoryRepository"/>.
+/// EF Core implementation of ISubcategoryRepository for managing subcategory data access.
 /// </summary>
 public sealed class SubcategoryRepository : ISubcategoryRepository
 {

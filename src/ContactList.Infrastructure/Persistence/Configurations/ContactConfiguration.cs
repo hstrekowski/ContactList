@@ -7,7 +7,6 @@ namespace ContactList.Infrastructure.Persistence.Configurations;
 
 /// <summary>
 /// EF Core mapping for <see cref="Contact"/>.
-/// Value objects (<see cref="Email"/>, <see cref="PhoneNumber"/>) are stored as strings;
 /// </summary>
 public sealed class ContactConfiguration : IEntityTypeConfiguration<Contact>
 {

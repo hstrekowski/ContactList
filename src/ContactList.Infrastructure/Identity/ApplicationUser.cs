@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Identity;
 namespace ContactList.Infrastructure.Identity;
 
 /// <summary>
-/// Represents an application user persisted by ASP.NET Core Identity.
-/// Uses <see cref="Guid"/> as the primary key for consistency with domain aggregates.
+/// Represents a user in the Identity system. Uses Guid as the primary key to stay consistent with domain entities.
 /// </summary>
 public class ApplicationUser : IdentityUser<Guid>
 {

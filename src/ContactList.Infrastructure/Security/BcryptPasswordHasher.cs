@@ -3,9 +3,8 @@ using ContactList.Application.Contracts.Security;
 namespace ContactList.Infrastructure.Security;
 
 /// <summary>
-/// BCrypt-backed implementation of <see cref="IPasswordHasher"/>.
-/// Used to hash the <c>PasswordHash</c> field on <c>Contact</c> entities
-/// (contact passwords are a data field per spec, not login credentials).
+/// BCrypt implementation of the password hasher. This is used for contact-specific passwords 
+/// stored in the database, which are treated as data fields rather than system login credentials.
 /// </summary>
 public sealed class BcryptPasswordHasher : IPasswordHasher
 {

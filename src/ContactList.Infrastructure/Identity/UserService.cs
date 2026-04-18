@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Identity;
 namespace ContactList.Infrastructure.Identity;
 
 /// <summary>
-/// ASP.NET Identity-backed implementation of <see cref="IUserService"/>.
-/// Delegates credential storage and password verification to <see cref="UserManager{TUser}"/>
-/// and issues JWT tokens via <see cref="JwtTokenService"/> on success.
+/// Implements <see cref="IUserService"/> using ASP.NET Identity for account management.
+/// It handles user registration, credential verification, and JWT issuance.
 /// </summary>
 public sealed class UserService : IUserService
 {
