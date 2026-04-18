@@ -1,14 +1,14 @@
 import
-  {
-    AfterViewInit,
-    Component,
-    ElementRef,
-    OnChanges,
-    SimpleChanges,
-    ViewChild,
-    input,
-    output,
-  } from '@angular/core';
+{
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+  input,
+  output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-confirm-modal',
