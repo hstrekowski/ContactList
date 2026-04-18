@@ -1,7 +1,7 @@
 ﻿namespace ContactList.Domain.Common
 {
     /// <summary>
-    /// Base class for all entities. Provides a unique identifier and equality comparison based on the identifier.
+    /// Base for all entities. sets up the id and equality checks.
     /// </summary>
     public abstract class BaseEntity
     {
@@ -26,6 +26,18 @@
         public override int GetHashCode()
         {
             return Id.GetHashCode();
+        }
+
+        public static bool operator ==(BaseEntity? left, BaseEntity? right)
+        {
+            if (left is null && right is null) return true;
+            if (left is null || right is null) return false;
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(BaseEntity? left, BaseEntity? right)
+        {
+            return !(left == right);
         }
     }
 }

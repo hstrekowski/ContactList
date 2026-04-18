@@ -4,7 +4,7 @@ using ContactList.Domain.Exceptions;
 namespace ContactList.Domain.Entities
 {
     /// <summary>
-    /// Top-level contact category entity.
+    ///  Category entity. holds the name and manages its subcategories.
     /// </summary>
     public class Category : BaseEntity
     {

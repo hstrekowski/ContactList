@@ -160,5 +160,48 @@ namespace ContactList.Domain.Tests.Common
             // Assert
             hashCode1.Should().NotBe(hashCode2);
         }
+
+        [Fact]
+        public void EqualityOperator_WithSameId_ShouldReturnTrue()
+        {
+            // Arrange
+            var id = Guid.NewGuid();
+            var entity1 = new TestEntity(id);
+            var entity2 = new TestEntity(id);
+
+            // Act
+            var result = entity1 == entity2;
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        [Fact]
+        public void InequalityOperator_WithDifferentId_ShouldReturnTrue()
+        {
+            // Arrange
+            var entity1 = new TestEntity(Guid.NewGuid());
+            var entity2 = new TestEntity(Guid.NewGuid());
+
+            // Act
+            var result = entity1 != entity2;
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        [Fact]
+        public void EqualityOperator_WithBothNull_ShouldReturnTrue()
+        {
+            // Arrange
+            TestEntity? entity1 = null;
+            TestEntity? entity2 = null;
+
+            // Act
+            var result = entity1 == entity2;
+
+            // Assert
+            result.Should().BeTrue();
+        }
     }
 }
