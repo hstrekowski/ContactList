@@ -3,11 +3,7 @@ using FluentValidation;
 namespace ContactList.Application.Features.Auth.Commands.Login
 {
     /// <summary>
-    /// Minimal validation for login — only checks that both fields are present and
-    /// that the email is well-formed. Complexity rules are intentionally NOT applied
-    /// here: a wrong password should always surface as a generic "invalid credentials"
-    /// error from the handler, never as a 400 telling the attacker that the value
-    /// failed a specific complexity rule.
+    /// Basic validation for login. Just checks if fields are filled and the email looks okay. We skip complexity checks on the password to avoid giving away hints to attackers.
     /// </summary>
     public sealed class LoginCommandValidator : AbstractValidator<LoginCommand>
     {

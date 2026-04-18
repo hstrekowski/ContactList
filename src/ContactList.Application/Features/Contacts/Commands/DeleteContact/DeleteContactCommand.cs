@@ -3,10 +3,8 @@ using MediatR;
 namespace ContactList.Application.Features.Contacts.Commands.DeleteContact
 {
     /// <summary>
-    /// Removes a contact from the store. The handler throws <c>NotFoundException</c>
-    /// when the id does not match an existing row, so the API layer can translate
-    /// that into a 404 response.
+    /// Deletes a contact from the system. Throws a NotFoundException if the ID is not found, which results in a 404 response.
     /// </summary>
-    /// <param name="Id">Identifier of the contact to delete.</param>
+    /// <param name="Id">Unique identifier of the contact to remove.</param>
     public sealed record DeleteContactCommand(Guid Id) : IRequest;
 }

@@ -4,8 +4,7 @@ using MediatR;
 namespace ContactList.Application.Features.Categories.Queries.GetCategories
 {
     /// <summary>
-    /// Returns every seeded category as a flat list. Used to populate the category
-    /// dropdown on the contact form.
+    /// Returns all categories as a flat list for dropdown menus.
     /// </summary>
     public sealed record GetCategoriesQuery : IRequest<IReadOnlyList<CategoryDto>>;
 }

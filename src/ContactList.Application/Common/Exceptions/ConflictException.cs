@@ -1,9 +1,7 @@
 namespace ContactList.Application.Common.Exceptions
 {
     /// <summary>
-    /// Thrown when a request conflicts with the current state of the resource,
-    /// for example attempting to create a contact with an email that is already taken.
-    /// Mapped to HTTP 409 by the global exception handler in the API layer.
+    /// Throws when something conflicts with existing data, like a duplicate email. Gets caught and turned into a 409 Conflict.
     /// </summary>
     public sealed class ConflictException : Exception
     {

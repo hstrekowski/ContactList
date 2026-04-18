@@ -9,14 +9,7 @@ using MediatR;
 namespace ContactList.Application.Features.Contacts.Commands.CreateContact
 {
     /// <summary>
-    /// Persists a new <see cref="Contact"/>. Performs the cross-aggregate checks that
-    /// FluentValidation cannot do on its own:
-    /// <list type="bullet">
-    /// <item>Email uniqueness — looked up via <see cref="IContactRepository.ExistsByEmailAsync"/>.</item>
-    /// <item>Category existence and the category-specific subcategory rules
-    ///       (Służbowy → existing subcategory required, Inny → custom name required,
-    ///       Prywatny → no subcategory).</item>
-    /// </list>
+    /// Creates and persists a new contact. Handles complex business rules like email uniqueness and category-specific subcategory requirements that go beyond simple field validation.
     /// </summary>
     public sealed class CreateContactCommandHandler : IRequestHandler<CreateContactCommand, Guid>
     {

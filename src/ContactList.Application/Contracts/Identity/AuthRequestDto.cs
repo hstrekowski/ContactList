@@ -1,10 +1,9 @@
 namespace ContactList.Application.Contracts.Identity
 {
     /// <summary>
-    /// Credentials payload accepted by the authentication service for both
-    /// registration and login operations.
+    /// Credentials used for login and registration.
     /// </summary>
-    /// <param name="Email">Email address used as the login identifier.</param>
-    /// <param name="Password">Plain-text password (hashed by the identity store before persistence).</param>
+    /// <param name="Email">User's email.</param>
+    /// <param name="Password">Raw password, gets hashed before saving.</param>
     public sealed record AuthRequestDto(string Email, string Password);
 }

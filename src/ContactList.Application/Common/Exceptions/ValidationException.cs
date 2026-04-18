@@ -3,15 +3,10 @@ using FluentValidation.Results;
 namespace ContactList.Application.Common.Exceptions
 {
     /// <summary>
-    /// Aggregates one or more validation failures collected from FluentValidation validators
-    /// executed by the <c>ValidationBehaviour</c> pipeline step.
-    /// Mapped to HTTP 400 by the global exception handler in the API layer.
+    /// Groups up all the FluentValidation errors caught by the pipeline. Turns into a 400 Bad Request in the middleware.
     /// </summary>
     public sealed class ValidationException : Exception
     {
-        /// <summary>
-        /// Failures grouped by property name. Each property maps to the list of messages for that property.
-        /// </summary>
         public IDictionary<string, string[]> Errors { get; }
 
         public ValidationException()

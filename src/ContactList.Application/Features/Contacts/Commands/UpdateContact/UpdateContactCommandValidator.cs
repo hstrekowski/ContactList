@@ -3,10 +3,7 @@ using FluentValidation;
 namespace ContactList.Application.Features.Contacts.Commands.UpdateContact
 {
     /// <summary>
-    /// Field-level validation for <see cref="UpdateContactCommand"/>. Mirrors
-    /// <c>CreateContactCommandValidator</c> with two differences: <c>Id</c> must be set,
-    /// and <c>Password</c> rules fire only when a new value is supplied (null means
-    /// "keep the existing hash").
+    /// Validates the contact update request. Requires a valid ID and only enforces password complexity if a new password is provided.
     /// </summary>
     public sealed class UpdateContactCommandValidator : AbstractValidator<UpdateContactCommand>
     {

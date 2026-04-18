@@ -4,10 +4,7 @@ using Microsoft.Extensions.Logging;
 namespace ContactList.Application.Common.Behaviours
 {
     /// <summary>
-    /// MediatR pipeline step that logs the entry and successful exit of every request,
-    /// giving observability into which commands and queries were executed.
-    /// Request payloads are intentionally NOT logged to avoid leaking sensitive data
-    /// such as passwords from <c>AuthRequestDto</c>.
+    /// Logs when requests start and finish. Doesn't log payloads to keep passwords and sensitive data out of the logs.
     /// </summary>
     public sealed class LoggingBehaviour<TRequest, TResponse>
         : IPipelineBehavior<TRequest, TResponse>
