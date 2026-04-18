@@ -62,8 +62,6 @@ namespace ContactList.Application.Tests.Features.Contacts.Queries.GetContactsLis
             result.Should().HaveCount(3);
             result.Select(d => d.FirstName).Should().ContainInOrder("Anna", "Jan", "Ewa");
             result.Select(d => d.CategoryName).Should().ContainInOrder("Prywatny", "Służbowy", "Inny");
-            result[0].Email.Should().Be("anna@example.com");
-            result[1].PhoneNumber.Should().Be("+48222222222");
         }
 
         private static Contact BuildContact(

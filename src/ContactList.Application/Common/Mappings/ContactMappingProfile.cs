@@ -20,8 +20,6 @@ namespace ContactList.Application.Common.Mappings
                     src.Id,
                     src.FirstName,
                     src.LastName,
-                    src.Email.Value,
-                    src.PhoneNumber.Value,
                     src.Category.Name));
 
             CreateMap<Contact, ContactDetailDto>()

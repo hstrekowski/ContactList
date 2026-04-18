@@ -48,8 +48,6 @@ namespace ContactList.Application.Tests.Common.Mappings
             dto.Id.Should().Be(contact.Id);
             dto.FirstName.Should().Be("Jan");
             dto.LastName.Should().Be("Kowalski");
-            dto.Email.Should().Be("jan.kowalski@example.com");
-            dto.PhoneNumber.Should().Be("+48123456789");
             dto.CategoryName.Should().Be("Służbowy");
         }
 
