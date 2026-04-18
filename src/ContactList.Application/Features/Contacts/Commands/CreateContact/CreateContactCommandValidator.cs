@@ -3,11 +3,7 @@ using FluentValidation;
 namespace ContactList.Application.Features.Contacts.Commands.CreateContact
 {
     /// <summary>
-    /// Field-level validation for <see cref="CreateContactCommand"/>. Mirrors the rules
-    /// enforced by the domain value objects so the API can return a 400 ProblemDetails
-    /// with all errors at once instead of bubbling up the first <c>DomainException</c>.
-    /// Cross-aggregate rules (category-vs-subcategory consistency, email uniqueness)
-    /// live in the handler — they require database lookups.
+    /// Validates input fields for creating a contact. These rules catch basic format and length errors before the command reaches the handler.
     /// </summary>
     public sealed class CreateContactCommandValidator : AbstractValidator<CreateContactCommand>
     {

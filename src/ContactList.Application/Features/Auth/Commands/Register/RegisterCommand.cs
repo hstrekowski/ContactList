@@ -4,11 +4,9 @@ using MediatR;
 namespace ContactList.Application.Features.Auth.Commands.Register
 {
     /// <summary>
-    /// Registers a new application user (ASP.NET Identity <c>ApplicationUser</c>) and
-    /// immediately issues a JWT so the client can use the protected endpoints without
-    /// a separate login round trip.
+    /// Registers a new user and gives them a JWT right away so they don't have to log in manually after signing up.
     /// </summary>
-    /// <param name="Email">Login email — must be unique among application users.</param>
-    /// <param name="Password">Plain-text password meeting complexity rules.</param>
+    /// <param name="Email">User's email, needs to be unique.</param>
+    /// <param name="Password">Raw password that meets the complexity rules.</param>
     public sealed record RegisterCommand(string Email, string Password) : IRequest<AuthResponseDto>;
 }

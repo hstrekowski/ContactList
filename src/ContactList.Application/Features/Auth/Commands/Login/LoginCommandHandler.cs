@@ -5,12 +5,7 @@ using MediatR;
 namespace ContactList.Application.Features.Auth.Commands.Login
 {
     /// <summary>
-    /// Verifies credentials through <see cref="IUserService.LoginAsync"/> and returns
-    /// an issued JWT. A null result from the service means either the email or the
-    /// password was wrong — both cases collapse into a single
-    /// <see cref="UnauthorizedException"/> with a generic message, which the API
-    /// layer maps to HTTP 401. Treating both failure modes identically prevents
-    /// account-enumeration attacks that probe whether a given email is registered.
+    /// Checks credentials through the user service and returns a JWT. Throws a generic unauthorized exception if login fails to hide whether the email or password was wrong.
     /// </summary>
     public sealed class LoginCommandHandler : IRequestHandler<LoginCommand, AuthResponseDto>
     {

@@ -5,10 +5,8 @@ using MediatR;
 namespace ContactList.Application.Features.Subcategories.Queries.GetSubcategoriesByCategory
 {
     /// <summary>
-    /// Loads every subcategory bound to the given category and projects each row to
-    /// <see cref="SubcategoryDto"/>. An unknown category id and a category with no
-    /// subcategories (e.g. "Prywatny") both return an empty list — the distinction
-    /// is irrelevant to the dropdown that consumes this endpoint.
+    /// Retrieves subcategories for a specific category and maps them to DTOs. 
+    /// Returns an empty list if the category ID is invalid or if the category (like 'Prywatny') simply has no subcategories.
     /// </summary>
     public sealed class GetSubcategoriesByCategoryQueryHandler
         : IRequestHandler<GetSubcategoriesByCategoryQuery, IReadOnlyList<SubcategoryDto>>

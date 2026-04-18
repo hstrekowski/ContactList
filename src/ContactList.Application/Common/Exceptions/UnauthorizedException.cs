@@ -1,10 +1,7 @@
 namespace ContactList.Application.Common.Exceptions
 {
     /// <summary>
-    /// Thrown when the caller could not be authenticated — for example wrong email
-    /// or password during login. Mapped to HTTP 401 by the global exception handler
-    /// in the API layer. Carries a single generic message to avoid leaking which
-    /// half of the credential pair was wrong (anti-enumeration).
+    /// Throws on failed login and turns into a 401. Keeps the error generic so we don't leak if it was the email or password that failed.
     /// </summary>
     public sealed class UnauthorizedException : Exception
     {

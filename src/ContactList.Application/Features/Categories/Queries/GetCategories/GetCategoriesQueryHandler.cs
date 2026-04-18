@@ -5,9 +5,7 @@ using MediatR;
 namespace ContactList.Application.Features.Categories.Queries.GetCategories
 {
     /// <summary>
-    /// Loads every category and projects it to <see cref="CategoryDto"/>. The mapping
-    /// is done inline rather than through AutoMapper — two fields don't justify the
-    /// overhead of a profile.
+    /// Loads all categories and maps them to DTOs. Mapping is done manually since it is only two fields.
     /// </summary>
     public sealed class GetCategoriesQueryHandler : IRequestHandler<GetCategoriesQuery, IReadOnlyList<CategoryDto>>
     {

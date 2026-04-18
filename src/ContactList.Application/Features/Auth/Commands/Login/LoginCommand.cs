@@ -4,12 +4,9 @@ using MediatR;
 namespace ContactList.Application.Features.Auth.Commands.Login
 {
     /// <summary>
-    /// Authenticates an existing application user against the ASP.NET Identity store
-    /// and returns a JWT on success. The handler treats wrong email and wrong password
-    /// the same way (single generic error) so the response cannot be used to enumerate
-    /// registered accounts.
+    /// Logs in the user and gives back a JWT. Errors are kept vague so people can't guess if an email exists in our db.
     /// </summary>
-    /// <param name="Email">Login email.</param>
-    /// <param name="Password">Plain-text password.</param>
+    /// <param name="Email">User's email.</param>
+    /// <param name="Password">Raw password to check.</param>
     public sealed record LoginCommand(string Email, string Password) : IRequest<AuthResponseDto>;
 }

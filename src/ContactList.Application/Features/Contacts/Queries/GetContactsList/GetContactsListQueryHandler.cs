@@ -6,9 +6,7 @@ using MediatR;
 namespace ContactList.Application.Features.Contacts.Queries.GetContactsList
 {
     /// <summary>
-    /// Loads every contact and projects each row to <see cref="ContactListItemDto"/>.
-    /// The repository is expected to eagerly load the <c>Category</c> navigation so the
-    /// AutoMapper profile can read <c>CategoryName</c> without lazy-load round trips.
+    /// Fetches all contacts and maps them to the list DTO. The repository should use eager loading for categories to avoid extra database hits during mapping.
     /// </summary>
     public sealed class GetContactsListQueryHandler : IRequestHandler<GetContactsListQuery, IReadOnlyList<ContactListItemDto>>
     {

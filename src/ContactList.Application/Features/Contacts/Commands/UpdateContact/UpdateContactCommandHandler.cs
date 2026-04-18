@@ -9,10 +9,7 @@ using MediatR;
 namespace ContactList.Application.Features.Contacts.Commands.UpdateContact
 {
     /// <summary>
-    /// Updates an existing <see cref="Contact"/>. Re-runs the same cross-aggregate
-    /// checks as <c>CreateContactCommandHandler</c>: email uniqueness (excluding the
-    /// row being edited), category existence, and the category-specific subcategory
-    /// rules. The password hash is only rewritten when the command carries a new value.
+    /// Updates an existing contact. Validates email uniqueness (excluding the current record) and enforces category-specific subcategory rules. The password is only re-hashed if a new one is provided.
     /// </summary>
     public sealed class UpdateContactCommandHandler : IRequestHandler<UpdateContactCommand>
     {

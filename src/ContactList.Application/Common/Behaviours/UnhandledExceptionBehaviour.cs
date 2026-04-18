@@ -5,9 +5,7 @@ using Microsoft.Extensions.Logging;
 namespace ContactList.Application.Common.Behaviours
 {
     /// <summary>
-    /// Outer-most MediatR pipeline step. Catches any exception thrown by the rest of the pipeline
-    /// (handler, validation, logging), logs unexpected ones and re-throws so the API layer can
-    /// translate the exception to the proper HTTP response.
+    /// Global try-catch for the MediatR pipeline. Logs exceptions and re-throws them for the API middleware to handle.
     /// </summary>
     public sealed class UnhandledExceptionBehaviour<TRequest, TResponse>
         : IPipelineBehavior<TRequest, TResponse>

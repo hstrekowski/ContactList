@@ -5,10 +5,7 @@ using ValidationException = ContactList.Application.Common.Exceptions.Validation
 namespace ContactList.Application.Common.Behaviours
 {
     /// <summary>
-    /// MediatR pipeline step that runs every FluentValidation <see cref="IValidator{T}"/>
-    /// registered for the incoming request. Collects the failures from all validators
-    /// in parallel and throws a single <see cref="ValidationException"/> if any are found,
-    /// preventing the handler from running with invalid input.
+    /// Runs all FluentValidation rules before the handler. Throws a validation exception if the request data is bad.
     /// </summary>
     public sealed class ValidationBehaviour<TRequest, TResponse>
         : IPipelineBehavior<TRequest, TResponse>

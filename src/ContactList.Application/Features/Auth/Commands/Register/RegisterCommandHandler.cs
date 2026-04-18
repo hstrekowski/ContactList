@@ -4,11 +4,7 @@ using MediatR;
 namespace ContactList.Application.Features.Auth.Commands.Register
 {
     /// <summary>
-    /// Thin orchestration wrapper around <see cref="IUserService.RegisterAsync"/>.
-    /// The actual ASP.NET Identity work — creating the <c>ApplicationUser</c>, hashing
-    /// the password, mapping Identity errors to <c>ConflictException</c> /
-    /// <c>ValidationException</c>, and minting the JWT — lives in the Infrastructure
-    /// implementation so the Application layer stays free of Identity dependencies.
+    /// Handles user registration by delegating to the identity service.
     /// </summary>
     public sealed class RegisterCommandHandler : IRequestHandler<RegisterCommand, AuthResponseDto>
     {

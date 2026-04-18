@@ -6,10 +6,7 @@ using MediatR;
 namespace ContactList.Application.Features.Contacts.Commands.DeleteContact
 {
     /// <summary>
-    /// Loads the contact, asks the repository to remove it, and commits the change.
-    /// We deliberately fetch first so the API can distinguish "no such contact" (404)
-    /// from "deleted nothing because the row was already gone" — without the read,
-    /// EF would silently succeed.
+    /// Deletes a contact. We fetch it first to ensure it actually exists, allowing us to throw a 404 if it's missing rather than letting EF fail silently.
     /// </summary>
     public sealed class DeleteContactCommandHandler : IRequestHandler<DeleteContactCommand>
     {

@@ -5,11 +5,7 @@ using ContactList.Domain.Entities;
 namespace ContactList.Application.Common.Mappings
 {
     /// <summary>
-    /// AutoMapper profile that projects the <see cref="Contact"/> aggregate to the
-    /// read-only DTOs returned from the query handlers. Flattens value objects
-    /// (<c>Email</c>, <c>PhoneNumber</c>) and pulls display names from the related
-    /// <c>Category</c> / <c>Subcategory</c> navigation properties.
-    /// Callers must ensure EF has eagerly loaded those navigations.
+    /// AutoMapper profile for contacts. Flattens value objects and maps category names. Make sure to Include() navigations in EF before using this.
     /// </summary>
     public sealed class ContactMappingProfile : Profile
     {

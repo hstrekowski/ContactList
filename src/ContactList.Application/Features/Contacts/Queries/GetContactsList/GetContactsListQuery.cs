@@ -4,8 +4,7 @@ using MediatR;
 namespace ContactList.Application.Features.Contacts.Queries.GetContactsList
 {
     /// <summary>
-    /// Returns every contact projected to the slim <see cref="ContactListItemDto"/> shape
-    /// shown on the list screen.
+    /// Returns all contacts using the slim list DTO for the main grid view.
     /// </summary>
     public sealed record GetContactsListQuery : IRequest<IReadOnlyList<ContactListItemDto>>;
 }

@@ -3,10 +3,7 @@ using FluentValidation;
 namespace ContactList.Application.Features.Auth.Commands.Register
 {
     /// <summary>
-    /// Full validation for new account creation — same complexity rules we apply to
-    /// contact passwords, plus a proper email format check. The login flow uses a
-    /// thinner validator because format issues there should surface as a generic
-    /// "invalid credentials" response, not a per-field 400.
+    ///  Validation for new accounts. Enforces password complexity and email format. It uses stricter rules than login to ensure high-quality account security from the start.
     /// </summary>
     public sealed class RegisterCommandValidator : AbstractValidator<RegisterCommand>
     {

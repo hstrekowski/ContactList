@@ -8,9 +8,7 @@ using MediatR;
 namespace ContactList.Application.Features.Contacts.Queries.GetContactById
 {
     /// <summary>
-    /// Loads a single <see cref="Contact"/> by id and projects it to <see cref="ContactDetailDto"/>.
-    /// Throws <see cref="NotFoundException"/> when no contact matches, so the API layer can
-    /// translate it into a 404 response via the global exception handler.
+    /// Loads a contact by ID and maps it to a detail DTO. Throws a NotFoundException if the ID doesn't exist, which the API converts to a 404.
     /// </summary>
     public sealed class GetContactByIdQueryHandler : IRequestHandler<GetContactByIdQuery, ContactDetailDto>
     {

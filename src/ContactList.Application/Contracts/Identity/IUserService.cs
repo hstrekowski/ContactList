@@ -1,29 +1,24 @@
 namespace ContactList.Application.Contracts.Identity
 {
     /// <summary>
-    /// Abstraction over the ASP.NET Identity user store used by the authentication features.
+    /// Interface for identity operations. Handles user creation and signing in via JWT.
     /// </summary>
     public interface IUserService
     {
         /// <summary>
-        /// Creates a new user with the given credentials and issues a JWT for the new user
-        /// so the client is authenticated immediately after registration.
+        /// Registers a new user and returns a token so they're logged in right away.
         /// </summary>
-        /// <param name="request">Email and password for the new account.</param>
-        /// <param name="cancellationToken">Token to cancel the asynchronous operation.</param>
-        /// <returns>Authentication result containing the issued JWT and user metadata.</returns>
-        /// <exception cref="Common.Exceptions.ConflictException">Email is already taken.</exception>
-        /// <exception cref="Common.Exceptions.ValidationException">Identity rejected the password (policy violation).</exception>
+        /// <param name="request">New user credentials.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Auth data with JWT and user info.</returns>
         Task<AuthResponseDto> RegisterAsync(AuthRequestDto request, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Validates the credentials and, on success, issues a JWT for the user.
-        /// Returns <c>null</c> when the email is unknown or the password is wrong;
-        /// the handler translates that into an unauthorized response.
+        /// Checks credentials and returns a JWT if they're correct. Returns null if login fails.
         /// </summary>
-        /// <param name="request">Email and password submitted by the client.</param>
-        /// <param name="cancellationToken">Token to cancel the asynchronous operation.</param>
-        /// <returns>Authentication result on success; <c>null</c> when credentials are invalid.</returns>
+        /// <param name="request">Login credentials.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Auth data on success, null on failure.</returns>
         Task<AuthResponseDto?> LoginAsync(AuthRequestDto request, CancellationToken cancellationToken = default);
     }
 }
