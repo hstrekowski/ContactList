@@ -23,7 +23,7 @@ namespace ContactList.Domain.ValueObjects
             if (!Regex.IsMatch(normalized, @"^\+[0-9]+$"))
                 throw new DomainException($"'{value}' is not a valid phone number. Expected international format, e.g. +48123456789.");
 
-            var digitCount = normalized.Count(char.IsDigit);
+            var digitCount = normalized.Length - 1;
             if (digitCount < MinDigits || digitCount > MaxDigits)
                 throw new DomainException($"Phone number must contain between {MinDigits} and {MaxDigits} digits.");
 

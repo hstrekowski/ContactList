@@ -4,7 +4,7 @@ using ContactList.Domain.Exceptions;
 namespace ContactList.Domain.Entities
 {
     /// <summary>
-    /// Subcategory entity scoped to a single <see cref="Entities.Category"/>
+    /// Subcategory entity scoped to a single Category
     /// </summary>
     public class Subcategory : BaseEntity
     {
