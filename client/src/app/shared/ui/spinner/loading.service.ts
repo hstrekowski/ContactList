@@ -11,6 +11,6 @@ export class LoadingService {
   }
 
   stop(): void {
-    this.count.update((n) => Math.max(0, n - 1));
+    this.count.update((n) => n - 1);
   }
 }
