@@ -6,5 +6,6 @@ namespace ContactList.Application.Contracts.Persistence
     {
         Task<IReadOnlyList<Category>> GetAllAsync(CancellationToken ct = default);
         Task<Category?> GetByIdAsync(Guid id, CancellationToken ct = default);
+        Task<bool> ExistsAsync(Guid id, CancellationToken ct = default);
     }
 }

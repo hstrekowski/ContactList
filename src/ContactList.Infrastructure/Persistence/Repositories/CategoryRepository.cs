@@ -31,4 +31,9 @@ public sealed class CategoryRepository : ICategoryRepository
             .Include(c => c.Subcategories)
             .FirstOrDefaultAsync(c => c.Id == id, ct);
     }
+
+    public async Task<bool> ExistsAsync(Guid id, CancellationToken ct = default)
+    {
+        return await _db.Categories.AnyAsync(c => c.Id == id, ct);
+    }
 }
