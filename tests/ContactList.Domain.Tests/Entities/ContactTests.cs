@@ -72,11 +72,11 @@ namespace ContactList.Domain.Tests.Entities
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        public void Constructor_WithInvalidFirstName_ShouldThrowDomainException(string invalidFirstName)
+        public void Constructor_WithInvalidFirstName_ShouldThrowDomainException(string? invalidFirstName)
         {
             // Arrange & Act
             Action act = () => new Contact(
-                invalidFirstName, "Doe", _validEmail, _validPasswordHash, _validPhone, _validDateOfBirth, _validCategoryId, null);
+                invalidFirstName!, "Doe", _validEmail, _validPasswordHash, _validPhone, _validDateOfBirth, _validCategoryId, null);
 
             // Assert
             act.Should().Throw<DomainException>().WithMessage("First name cannot be empty.");
@@ -86,11 +86,11 @@ namespace ContactList.Domain.Tests.Entities
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        public void Constructor_WithInvalidLastName_ShouldThrowDomainException(string invalidLastName)
+        public void Constructor_WithInvalidLastName_ShouldThrowDomainException(string? invalidLastName)
         {
             // Arrange & Act
             Action act = () => new Contact(
-                "John", invalidLastName, _validEmail, _validPasswordHash, _validPhone, _validDateOfBirth, _validCategoryId, null);
+                "John", invalidLastName!, _validEmail, _validPasswordHash, _validPhone, _validDateOfBirth, _validCategoryId, null);
 
             // Assert
             act.Should().Throw<DomainException>().WithMessage("Last name cannot be empty.");
@@ -111,11 +111,11 @@ namespace ContactList.Domain.Tests.Entities
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        public void Constructor_WithInvalidPasswordHash_ShouldThrowDomainException(string invalidPasswordHash)
+        public void Constructor_WithInvalidPasswordHash_ShouldThrowDomainException(string? invalidPasswordHash)
         {
             // Arrange & Act
             Action act = () => new Contact(
-                "John", "Doe", _validEmail, invalidPasswordHash, _validPhone, _validDateOfBirth, _validCategoryId, null);
+                "John", "Doe", _validEmail, invalidPasswordHash!, _validPhone, _validDateOfBirth, _validCategoryId, null);
 
             // Assert
             act.Should().Throw<DomainException>().WithMessage("Password hash is required.");
@@ -235,14 +235,14 @@ namespace ContactList.Domain.Tests.Entities
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        public void ChangePasswordHash_WithInvalidHash_ShouldThrowDomainException(string invalidHash)
+        public void ChangePasswordHash_WithInvalidHash_ShouldThrowDomainException(string? invalidHash)
         {
             // Arrange
             var contact = new Contact(
                 "John", "Doe", _validEmail, _validPasswordHash, _validPhone, _validDateOfBirth, _validCategoryId, null);
 
             // Act
-            Action act = () => contact.ChangePasswordHash(invalidHash);
+            Action act = () => contact.ChangePasswordHash(invalidHash!);
 
             // Assert
             act.Should().Throw<DomainException>().WithMessage("Password hash is required.");

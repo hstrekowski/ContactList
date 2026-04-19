@@ -23,10 +23,10 @@ namespace ContactList.Domain.Tests.ValueObjects
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        public void Constructor_WithEmptyValue_ShouldThrowDomainException(string invalidPassword)
+        public void Constructor_WithEmptyValue_ShouldThrowDomainException(string? invalidPassword)
         {
             // Arrange & Act
-            Action act = () => new Password(invalidPassword);
+            Action act = () => new Password(invalidPassword!);
 
             // Assert
             act.Should().Throw<DomainException>()

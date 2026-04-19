@@ -43,13 +43,13 @@ namespace ContactList.Domain.Tests.Entities
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        public void Constructor_WithEmptyName_ShouldThrowDomainException(string invalidName)
+        public void Constructor_WithEmptyName_ShouldThrowDomainException(string? invalidName)
         {
             // Arrange
             var categoryId = Guid.NewGuid();
 
             // Act
-            Action act = () => new Subcategory(invalidName, categoryId);
+            Action act = () => new Subcategory(invalidName!, categoryId);
 
             // Assert
             act.Should().Throw<DomainException>()
@@ -75,13 +75,13 @@ namespace ContactList.Domain.Tests.Entities
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        public void Rename_WithEmptyName_ShouldThrowDomainException(string invalidName)
+        public void Rename_WithEmptyName_ShouldThrowDomainException(string? invalidName)
         {
             // Arrange
             var subcategory = new Subcategory("Old Name", Guid.NewGuid());
 
             // Act
-            Action act = () => subcategory.Rename(invalidName);
+            Action act = () => subcategory.Rename(invalidName!);
 
             // Assert
             act.Should().Throw<DomainException>()

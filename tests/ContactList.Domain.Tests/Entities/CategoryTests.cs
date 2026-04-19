@@ -29,10 +29,10 @@ namespace ContactList.Domain.Tests.Entities
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        public void Constructor_WithEmptyName_ShouldThrowDomainException(string invalidName)
+        public void Constructor_WithEmptyName_ShouldThrowDomainException(string? invalidName)
         {
             // Arrange & Act
-            Action act = () => new Category(invalidName);
+            Action act = () => new Category(invalidName!);
 
             // Assert
             act.Should().Throw<DomainException>()

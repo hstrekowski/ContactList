@@ -24,10 +24,10 @@ namespace ContactList.Domain.Tests.ValueObjects
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        public void Constructor_WithEmptyValue_ShouldThrowDomainException(string invalidNumber)
+        public void Constructor_WithEmptyValue_ShouldThrowDomainException(string? invalidNumber)
         {
             // Arrange & Act
-            Action act = () => new PhoneNumber(invalidNumber);
+            Action act = () => new PhoneNumber(invalidNumber!);
 
             // Assert
             act.Should().Throw<DomainException>()
