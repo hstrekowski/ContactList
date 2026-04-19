@@ -3,9 +3,7 @@
     <h1 class="page-title">Kontakty</h1>
 
     @if (authState.isLoggedIn()) {
-      <button type="button" class="btn btn--primary" (click)="onCreate()">
-        Dodaj kontakt
-      </button>
+      <button type="button" class="btn btn--primary" (click)="onCreate()">Dodaj kontakt</button>
     }
   </header>
 
@@ -27,9 +25,6 @@
       }
     </ul>
   }
-
-  <!-- FE-8: details modal bound to selectedDetailId() -->
-  <!-- FE-9: form modal bound to formMode() + editingContactId() -->
 
   <app-confirm-modal
     [open]="deleteCandidate() !== null"
