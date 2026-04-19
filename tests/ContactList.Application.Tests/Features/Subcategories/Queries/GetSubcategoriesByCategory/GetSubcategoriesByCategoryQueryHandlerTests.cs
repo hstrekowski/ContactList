@@ -8,17 +8,22 @@ namespace ContactList.Application.Tests.Features.Subcategories.Queries.GetSubcat
 {
     public class GetSubcategoriesByCategoryQueryHandlerTests
     {
-        private readonly Mock<ISubcategoryRepository> _repo = new(MockBehavior.Strict);
+        private readonly Mock<ISubcategoryRepository> _subcategoryRepo = new(MockBehavior.Strict);
+        private readonly Mock<ICategoryRepository> _categoryRepo = new(MockBehavior.Strict);
 
         [Fact]
         public async Task Handle_CategoryHasNoSubcategories_ReturnsEmptyList()
         {
             // Arrange
             var categoryId = Guid.NewGuid();
-            _repo.Setup(r => r.GetByCategoryIdAsync(categoryId, It.IsAny<CancellationToken>()))
+
+            _categoryRepo.Setup(r => r.ExistsAsync(categoryId, It.IsAny<CancellationToken>()))
+                .ReturnsAsync(true);
+
+            _subcategoryRepo.Setup(r => r.GetByCategoryIdAsync(categoryId, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(Array.Empty<Subcategory>());
 
-            var handler = new GetSubcategoriesByCategoryQueryHandler(_repo.Object);
+            var handler = new GetSubcategoriesByCategoryQueryHandler(_subcategoryRepo.Object, _categoryRepo.Object);
             var query = new GetSubcategoriesByCategoryQuery(categoryId);
 
             // Act
@@ -40,10 +45,13 @@ namespace ContactList.Application.Tests.Features.Subcategories.Queries.GetSubcat
                 new Subcategory("Współpracownik", categoryId),
             };
 
-            _repo.Setup(r => r.GetByCategoryIdAsync(categoryId, It.IsAny<CancellationToken>()))
+            _categoryRepo.Setup(r => r.ExistsAsync(categoryId, It.IsAny<CancellationToken>()))
+                .ReturnsAsync(true);
+
+            _subcategoryRepo.Setup(r => r.GetByCategoryIdAsync(categoryId, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(subcategories);
 
-            var handler = new GetSubcategoriesByCategoryQueryHandler(_repo.Object);
+            var handler = new GetSubcategoriesByCategoryQueryHandler(_subcategoryRepo.Object, _categoryRepo.Object);
             var query = new GetSubcategoriesByCategoryQuery(categoryId);
 
             // Act
