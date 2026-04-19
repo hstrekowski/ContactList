@@ -11,21 +11,31 @@ namespace ContactList.Application.Tests.Features.Contacts.Commands.DeleteContact
     public class DeleteContactCommandHandlerTests
     {
         private readonly Mock<IContactRepository> _contactRepo = new(MockBehavior.Strict);
+        private readonly Mock<ISubcategoryRepository> _subcategoryRepo = new(MockBehavior.Strict);
         private readonly Mock<IUnitOfWork> _uow = new(MockBehavior.Strict);
 
         private DeleteContactCommandHandler CreateHandler() =>
-            new(_contactRepo.Object, _uow.Object);
+            new(_contactRepo.Object, _subcategoryRepo.Object, _uow.Object);
 
-        private static Contact ExistingContact() =>
-            new(
+        private static Contact ExistingContact(string categoryName = "Prywatny")
+        {
+            var category = new Category(categoryName);
+            var contact = new Contact(
                 "Jan",
                 "Kowalski",
                 new Email("jan@example.com"),
                 "hash",
                 new PhoneNumber("+48123456789"),
                 new DateOnly(1990, 1, 1),
-                Guid.NewGuid(),
+                category.Id,
                 subcategoryId: null);
+
+            typeof(Contact)
+                .GetProperty(nameof(Contact.Category))!
+                .SetValue(contact, category);
+
+            return contact;
+        }
 
         [Fact]
         public async Task Handle_ExistingContact_DeletesAndCommits()

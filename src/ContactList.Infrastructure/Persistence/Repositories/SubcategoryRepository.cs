@@ -16,6 +16,11 @@ public sealed class SubcategoryRepository : ISubcategoryRepository
         _db = db;
     }
 
+    public async Task<Subcategory?> GetByIdAsync(Guid id, CancellationToken ct = default)
+    {
+        return await _db.Subcategories.FirstOrDefaultAsync(s => s.Id == id, ct);
+    }
+
     public async Task<IReadOnlyList<Subcategory>> GetByCategoryIdAsync(Guid categoryId, CancellationToken ct = default)
     {
         return await _db.Subcategories
@@ -35,5 +40,11 @@ public sealed class SubcategoryRepository : ISubcategoryRepository
     public async Task AddAsync(Subcategory subcategory, CancellationToken ct = default)
     {
         await _db.Subcategories.AddAsync(subcategory, ct);
+    }
+
+    public Task DeleteAsync(Subcategory subcategory, CancellationToken ct = default)
+    {
+        _db.Subcategories.Remove(subcategory);
+        return Task.CompletedTask;
     }
 }
