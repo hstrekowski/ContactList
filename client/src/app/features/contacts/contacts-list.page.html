@@ -26,10 +26,7 @@
     </ul>
   }
 
-  <app-contact-details-modal
-    [contactId]="selectedDetailId()"
-    (closed)="onCloseDetails()"
-  />
+  <app-contact-details-modal [contactId]="selectedDetailId()" (closed)="onCloseDetails()" />
 
   <app-contact-form-modal
     [mode]="formMode()"

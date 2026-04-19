@@ -18,12 +18,14 @@ import { Subscription } from 'rxjs';
 import { ContactsService } from '../../core/api/contacts.service';
 import { CategoriesService } from '../../core/api/categories.service';
 import { ToastService } from '../../shared/ui/toast/toast.service';
-import {
+import
+{
   CATEGORY_NAMES,
   Category,
   Subcategory,
 } from '../../core/models/category';
-import {
+import
+{
   CreateContactRequest,
   UpdateContactRequest,
 } from '../../core/models/contact';
