@@ -6,7 +6,7 @@ namespace ContactList.Domain.ValueObjects
     /// <summary>
     /// Represents a validated raw password that satisfies complexity requirements.
     /// </summary>
-    public record Password
+    public sealed record Password
     {
         private const int MinLength = 8;
         private const int MaxLength = 128;

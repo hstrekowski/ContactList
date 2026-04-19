@@ -6,7 +6,7 @@ namespace ContactList.Domain.ValueObjects
     /// <summary>
     /// Represents a validated and normalized email address.
     /// </summary>
-    public record Email
+    public sealed record Email
     {
         private const int MaxLength = 254;
 

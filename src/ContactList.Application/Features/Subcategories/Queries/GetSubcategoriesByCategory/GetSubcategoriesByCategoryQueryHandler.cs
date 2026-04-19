@@ -8,7 +8,7 @@ namespace ContactList.Application.Features.Subcategories.Queries.GetSubcategorie
 {
     /// <summary>
     /// Retrieves subcategories for a specific category and maps them to DTOs. 
-    /// Returns an empty list if the category ID is invalid or if the category (like 'Prywatny') simply has no subcategories.
+    /// Returns an empty list if the category ID is (like 'Prywatny') which simply has no subcategories.
     /// </summary>
     public sealed class GetSubcategoriesByCategoryQueryHandler
         : IRequestHandler<GetSubcategoriesByCategoryQuery, IReadOnlyList<SubcategoryDto>>

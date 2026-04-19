@@ -6,7 +6,7 @@ namespace ContactList.Domain.ValueObjects
     /// <summary>
     /// Represents a phone number in E.164 format (e.g. +48123456789).
     /// </summary>
-    public record PhoneNumber
+    public sealed record PhoneNumber
     {
         private const int MinDigits = 7;
         private const int MaxDigits = 15;
