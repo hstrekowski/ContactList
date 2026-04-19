@@ -26,6 +26,18 @@
     </ul>
   }
 
+  <app-contact-details-modal
+    [contactId]="selectedDetailId()"
+    (closed)="onCloseDetails()"
+  />
+
+  <app-contact-form-modal
+    [mode]="formMode()"
+    [contactId]="editingContactId()"
+    (saved)="onFormSaved()"
+    (closed)="onCloseForm()"
+  />
+
   <app-confirm-modal
     [open]="deleteCandidate() !== null"
     title="Usuń kontakt"

@@ -4,6 +4,8 @@ import { ContactsService } from '../../core/api/contacts.service';
 import { ToastService } from '../../shared/ui/toast/toast.service';
 import { ContactListItem } from '../../core/models/contact';
 import { ContactCardComponent } from './contact-card.component';
+import { ContactDetailsModalComponent } from './contact-details-modal.component';
+import { ContactFormModalComponent } from './contact-form-modal.component';
 import { ConfirmModalComponent } from '../../shared/ui/confirm-modal/confirm-modal.component';
 
 type FormMode = 'create' | 'edit' | null;
@@ -11,7 +13,12 @@ type FormMode = 'create' | 'edit' | null;
 @Component({
   selector: 'app-contacts-list-page',
   standalone: true,
-  imports: [ContactCardComponent, ConfirmModalComponent],
+  imports: [
+    ContactCardComponent,
+    ContactDetailsModalComponent,
+    ContactFormModalComponent,
+    ConfirmModalComponent,
+  ],
   templateUrl: './contacts-list.page.html',
   styleUrl: './contacts-list.page.css',
 })
