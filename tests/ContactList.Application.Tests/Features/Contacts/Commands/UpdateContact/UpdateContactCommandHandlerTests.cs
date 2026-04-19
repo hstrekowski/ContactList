@@ -38,23 +38,30 @@ namespace ContactList.Application.Tests.Features.Contacts.Commands.UpdateContact
                 SubcategoryId: subcategoryId,
                 SubcategoryName: subcategoryName);
 
-        private static Contact ExistingContact(Guid categoryId) =>
-            new(
+        private static Contact ExistingContact(Category category)
+        {
+            var contact = new Contact(
                 "Old",
                 "Person",
                 new Email("old@example.com"),
                 "old-hash",
                 new PhoneNumber("+48000000000"),
                 new DateOnly(1980, 1, 1),
-                categoryId,
+                category.Id,
                 subcategoryId: null);
+
+            var categoryProperty = typeof(Contact).GetProperty(nameof(Contact.Category));
+            categoryProperty?.SetValue(contact, category);
+
+            return contact;
+        }
 
         [Fact]
         public async Task Handle_PrywatnyCategoryWithNullPassword_UpdatesContactWithoutChangingPassword()
         {
             // Arrange
             var category = new Category("Prywatny");
-            var existing = ExistingContact(category.Id);
+            var existing = ExistingContact(category);
             var cmd = BaseCommand(existing.Id, category.Id, password: null);
 
             _contactRepo.Setup(r => r.GetByIdAsync(existing.Id, It.IsAny<CancellationToken>()))
@@ -81,7 +88,7 @@ namespace ContactList.Application.Tests.Features.Contacts.Commands.UpdateContact
         {
             // Arrange
             var category = new Category("Prywatny");
-            var existing = ExistingContact(category.Id);
+            var existing = ExistingContact(category);
             var cmd = BaseCommand(existing.Id, category.Id, password: "NewPass1!");
 
             _contactRepo.Setup(r => r.GetByIdAsync(existing.Id, It.IsAny<CancellationToken>()))
@@ -107,7 +114,7 @@ namespace ContactList.Application.Tests.Features.Contacts.Commands.UpdateContact
         {
             // Arrange
             var category = new Category("Służbowy");
-            var existing = ExistingContact(category.Id);
+            var existing = ExistingContact(category);
             var subcategoryId = Guid.NewGuid();
             var cmd = BaseCommand(existing.Id, category.Id, subcategoryId: subcategoryId);
 
@@ -132,7 +139,7 @@ namespace ContactList.Application.Tests.Features.Contacts.Commands.UpdateContact
         {
             // Arrange
             var category = new Category("Inny");
-            var existing = ExistingContact(category.Id);
+            var existing = ExistingContact(category);
             var cmd = BaseCommand(existing.Id, category.Id, subcategoryName: "Sąsiad");
 
             _contactRepo.Setup(r => r.GetByIdAsync(existing.Id, It.IsAny<CancellationToken>())).ReturnsAsync(existing);
@@ -172,7 +179,7 @@ namespace ContactList.Application.Tests.Features.Contacts.Commands.UpdateContact
         {
             // Arrange
             var category = new Category("Prywatny");
-            var existing = ExistingContact(category.Id);
+            var existing = ExistingContact(category);
             var cmd = BaseCommand(existing.Id, category.Id);
 
             _contactRepo.Setup(r => r.GetByIdAsync(existing.Id, It.IsAny<CancellationToken>())).ReturnsAsync(existing);
@@ -189,7 +196,8 @@ namespace ContactList.Application.Tests.Features.Contacts.Commands.UpdateContact
         public async Task Handle_CategoryDoesNotExist_ThrowsNotFoundException()
         {
             // Arrange
-            var existing = ExistingContact(Guid.NewGuid());
+            var existingCategory = new Category("Prywatny");
+            var existing = ExistingContact(existingCategory);
             var cmd = BaseCommand(existing.Id, Guid.NewGuid());
 
             _contactRepo.Setup(r => r.GetByIdAsync(existing.Id, It.IsAny<CancellationToken>())).ReturnsAsync(existing);
@@ -209,7 +217,7 @@ namespace ContactList.Application.Tests.Features.Contacts.Commands.UpdateContact
         {
             // Arrange
             var category = new Category("Służbowy");
-            var existing = ExistingContact(category.Id);
+            var existing = ExistingContact(category);
             var cmd = BaseCommand(existing.Id, category.Id, subcategoryId: null);
 
             _contactRepo.Setup(r => r.GetByIdAsync(existing.Id, It.IsAny<CancellationToken>())).ReturnsAsync(existing);
@@ -228,7 +236,7 @@ namespace ContactList.Application.Tests.Features.Contacts.Commands.UpdateContact
         {
             // Arrange
             var category = new Category("Prywatny");
-            var existing = ExistingContact(category.Id);
+            var existing = ExistingContact(category);
             var cmd = BaseCommand(existing.Id, category.Id, subcategoryId: Guid.NewGuid());
 
             _contactRepo.Setup(r => r.GetByIdAsync(existing.Id, It.IsAny<CancellationToken>())).ReturnsAsync(existing);
