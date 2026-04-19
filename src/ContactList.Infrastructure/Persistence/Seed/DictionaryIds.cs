@@ -20,4 +20,11 @@ public static class DictionaryIds
         public static readonly Guid Wspolpracownik = new("aaaaaaaa-0003-0000-0000-000000000000");
         public static readonly Guid Partner        = new("aaaaaaaa-0004-0000-0000-000000000000");
     }
+
+    public static class Contacts
+    {
+        public static readonly Guid Contact1 = new("c1111111-0000-0000-0000-000000000001");
+        public static readonly Guid Contact2 = new("c2222222-0000-0000-0000-000000000002");
+        public static readonly Guid Contact3 = new("c3333333-0000-0000-0000-000000000003");
+    }
 }
