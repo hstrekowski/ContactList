@@ -81,7 +81,13 @@
         <div class="row">
           <label class="field">
             <span class="field-label">Telefon</span>
-            <input type="tel" formControlName="phoneNumber" maxlength="20" />
+            <input
+              type="tel"
+              formControlName="phoneNumber"
+              maxlength="20"
+              placeholder="+48123456789"
+            />
+            <span class="field-hint">Format międzynarodowy, np. +48123456789.</span>
             @if (form.controls.phoneNumber.touched && form.controls.phoneNumber.invalid) {
               <span class="field-error">Wymagany, maks. 20 znaków.</span>
             }

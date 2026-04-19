@@ -43,7 +43,7 @@ public sealed class GlobalExceptionHandler : IExceptionHandler
             status);
 
         httpContext.Response.StatusCode = status;
-        await httpContext.Response.WriteAsJsonAsync(problem, cancellationToken);
+        await httpContext.Response.WriteAsJsonAsync(problem, problem.GetType(), cancellationToken);
         return true;
     }
     private static (int Status, ProblemDetails Problem) Map(Exception exception) => exception switch

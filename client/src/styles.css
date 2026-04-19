@@ -1,12 +1,12 @@
 :root {
-  --color-bg: #0f172a;
-  --color-surface: #1e293b;
-  --color-surface-hover: #273449;
-  --color-border: #334155;
-  --color-text: #e2e8f0;
-  --color-text-muted: #94a3b8;
-  --color-primary: #60a5fa;
-  --color-primary-hover: #3b82f6;
+  --color-bg: #0a0a0a;
+  --color-surface: #171717;
+  --color-surface-hover: #262626;
+  --color-border: #3f3f3f;
+  --color-text: #fafafa;
+  --color-text-muted: #a3a3a3;
+  --color-primary: #fafafa;
+  --color-primary-hover: #e5e5e5;
   --color-danger: #ef4444;
   --color-danger-hover: #dc2626;
   --color-success: #22c55e;
@@ -96,6 +96,7 @@ dialog {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: 0;
+  margin: auto;
   box-shadow: var(--shadow-lg);
 }
 
@@ -117,7 +118,7 @@ dialog::backdrop {
 
 .btn--primary {
   background-color: var(--color-primary);
-  color: #0f172a;
+  color: #0a0a0a;
 }
 
 .btn--primary:hover:not(:disabled) {

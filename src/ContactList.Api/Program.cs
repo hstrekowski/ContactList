@@ -34,7 +34,11 @@ public class Program
             app.UseSwaggerUI();
         }
 
-        app.UseHttpsRedirection();
+        if (!app.Environment.IsDevelopment())
+        {
+            app.UseHttpsRedirection();
+        }
+
         app.UseCors(ApiServiceRegistration.AngularCorsPolicy);
         app.UseAuthentication();
         app.UseAuthorization();

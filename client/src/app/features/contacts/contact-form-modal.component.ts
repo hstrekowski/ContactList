@@ -312,15 +312,30 @@ export class ContactFormModalComponent
     {
       this.form.controls.email.setErrors({ duplicate: true });
       this.error.set('Kontakt z tym adresem email już istnieje.');
+      return;
     }
-    else if (err.status === 400)
+    if (err.status === 400)
     {
-      this.error.set('Popraw błędy w formularzu.');
+      const body = err.error as
+        | { detail?: string; errors?: Record<string, string[]> }
+        | null;
+      if (body?.errors && Object.keys(body.errors).length > 0)
+      {
+        const firstKey = Object.keys(body.errors)[0];
+        const firstMsg = body.errors[firstKey]?.[0];
+        this.error.set(firstMsg ?? 'Popraw błędy w formularzu.');
+      }
+      else if (body?.detail)
+      {
+        this.error.set(body.detail);
+      }
+      else
+      {
+        this.error.set('Popraw błędy w formularzu.');
+      }
+      return;
     }
-    else
-    {
-      this.error.set('Nie udało się zapisać. Spróbuj ponownie.');
-    }
+    this.error.set('Nie udało się zapisać. Spróbuj ponownie.');
   }
 
   private sync(): void
