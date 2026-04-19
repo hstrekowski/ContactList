@@ -1,0 +1,62 @@
+<div class="auth-page">
+  <form class="auth-card" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <h1>Zarejestruj się</h1>
+
+    <label class="field">
+      <span class="field-label">Email</span>
+      <input
+        type="email"
+        formControlName="email"
+        autocomplete="email"
+        placeholder="email@example.com"
+      />
+      @if (form.controls.email.touched && form.controls.email.invalid) {
+        <span class="field-error">
+          @if (form.controls.email.errors?.['required']) {
+            Email jest wymagany.
+          } @else if (form.controls.email.errors?.['email']) {
+            Niepoprawny format email.
+          }
+        </span>
+      }
+    </label>
+
+    <label class="field">
+      <span class="field-label">Hasło</span>
+      <input type="password" formControlName="password" autocomplete="new-password" />
+      <span class="field-hint"> Min. 8 znaków, wielka + mała litera, cyfra, znak specjalny. </span>
+      @if (form.controls.password.touched && passwordErrors) {
+        <span class="field-error">
+          @if (passwordErrors['required']) {
+            Hasło jest wymagane.
+          } @else if (passwordErrors['minlength']) {
+            {{ passwordErrors['minlength'] }}
+          } @else if (passwordErrors['uppercase']) {
+            {{ passwordErrors['uppercase'] }}
+          } @else if (passwordErrors['lowercase']) {
+            {{ passwordErrors['lowercase'] }}
+          } @else if (passwordErrors['digit']) {
+            {{ passwordErrors['digit'] }}
+          } @else if (passwordErrors['special']) {
+            {{ passwordErrors['special'] }}
+          } @else if (passwordErrors['maxlength']) {
+            {{ passwordErrors['maxlength'] }}
+          }
+        </span>
+      }
+    </label>
+
+    @if (error()) {
+      <div class="form-error">{{ error() }}</div>
+    }
+
+    <button type="submit" class="btn btn--primary" [disabled]="submitting()">
+      {{ submitting() ? 'Rejestrowanie...' : 'Zarejestruj' }}
+    </button>
+
+    <p class="auth-link">
+      Masz już konto?
+      <a routerLink="/login">Zaloguj się</a>
+    </p>
+  </form>
+</div>

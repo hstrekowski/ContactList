@@ -1,0 +1,56 @@
+<section class="page">
+  <header class="page-header">
+    <h1 class="page-title">Kontakty</h1>
+
+    @if (authState.isLoggedIn()) {
+      <button type="button" class="btn btn--primary" (click)="onCreate()">Dodaj kontakt</button>
+    }
+  </header>
+
+  @if (loading()) {
+    <p class="state-text">Ładowanie…</p>
+  } @else if (contacts().length === 0) {
+    <p class="state-text">Brak kontaktów.</p>
+  } @else {
+    <ul class="grid">
+      @for (contact of contacts(); track contact.id) {
+        <li>
+          <app-contact-card
+            [contact]="contact"
+            (open)="onOpenDetails($event)"
+            (edit)="onEdit($event)"
+            (remove)="onDeleteRequest($event)"
+          />
+        </li>
+      }
+    </ul>
+  }
+
+  <app-contact-details-modal [contactId]="selectedDetailId()" (closed)="onCloseDetails()" />
+
+  <app-contact-form-modal
+    [mode]="formMode()"
+    [contactId]="editingContactId()"
+    (saved)="onFormSaved()"
+    (closed)="onCloseForm()"
+  />
+
+  <app-confirm-modal
+    [open]="deleteCandidate() !== null"
+    title="Usuń kontakt"
+    [message]="
+      deleteCandidate()
+        ? 'Czy na pewno usunąć kontakt ' +
+          deleteCandidate()!.firstName +
+          ' ' +
+          deleteCandidate()!.lastName +
+          '?'
+        : ''
+    "
+    confirmLabel="Usuń"
+    cancelLabel="Anuluj"
+    [danger]="true"
+    (confirmed)="onConfirmDelete()"
+    (cancelled)="onCancelDelete()"
+  />
+</section>

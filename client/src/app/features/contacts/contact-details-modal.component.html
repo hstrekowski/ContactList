@@ -1,0 +1,39 @@
+<dialog #dialogRef class="modal" (close)="onClose()">
+  @if (loading()) {
+    <div class="modal-body">
+      <p class="state-text">Ładowanie…</p>
+    </div>
+  } @else if (contact(); as c) {
+    <header class="modal-header">
+      <h2 class="modal-title">{{ c.firstName }} {{ c.lastName }}</h2>
+      <button type="button" class="btn btn--icon" aria-label="Zamknij" (click)="onClose()">
+        X
+      </button>
+    </header>
+
+    <div class="modal-body">
+      <dl class="details">
+        <dt>Email</dt>
+        <dd>{{ c.email }}</dd>
+
+        <dt>Telefon</dt>
+        <dd>{{ c.phoneNumber }}</dd>
+
+        <dt>Data urodzenia</dt>
+        <dd>{{ c.dateOfBirth }}</dd>
+
+        <dt>Kategoria</dt>
+        <dd>{{ c.categoryName }}</dd>
+
+        @if (c.subcategoryName) {
+          <dt>Podkategoria</dt>
+          <dd>{{ c.subcategoryName }}</dd>
+        }
+      </dl>
+    </div>
+
+    <footer class="modal-footer">
+      <button type="button" class="btn btn--ghost" (click)="onClose()">Zamknij</button>
+    </footer>
+  }
+</dialog>

@@ -1,1 +1,23 @@
-<router-outlet />
+<app-spinner />
+
+<header class="app-header">
+  <a routerLink="/contacts" class="brand">Kontakty</a>
+
+  <nav class="app-nav">
+    @if (authState.isLoggedIn()) {
+      <span class="user-email">{{ authState.email() }}</span>
+      <button type="button" class="btn btn--ghost" (click)="onLogout()">
+        Wyloguj
+      </button>
+    } @else {
+      <a routerLink="/login" class="btn btn--ghost">Zaloguj</a>
+      <a routerLink="/register" class="btn btn--primary">Zarejestruj</a>
+    }
+  </nav>
+</header>
+
+<main class="app-main">
+  <router-outlet />
+</main>
+
+<app-toast />
