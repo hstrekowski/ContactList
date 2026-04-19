@@ -1,0 +1,29 @@
+<article class="card" (click)="onOpen()" tabindex="0">
+  <div class="card-body">
+    <h3 class="card-name">{{ contact().firstName }} {{ contact().lastName }}</h3>
+    <span class="card-badge">{{ contact().categoryName }}</span>
+  </div>
+
+  @if (isLoggedIn()) {
+    <div class="card-actions">
+      <button
+        type="button"
+        class="btn btn--icon"
+        title="Edytuj"
+        aria-label="Edytuj"
+        (click)="onEdit($event)"
+      >
+        Edytuj
+      </button>
+      <button
+        type="button"
+        class="btn btn--icon"
+        title="Usuń"
+        aria-label="Usuń"
+        (click)="onRemove($event)"
+      >
+        Usuń
+      </button>
+    </div>
+  }
+</article>
