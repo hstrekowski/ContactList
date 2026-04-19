@@ -51,6 +51,10 @@ namespace ContactList.Application.Features.Contacts.Commands.UpdateContact
             var category = await _categoryRepository.GetByIdAsync(request.CategoryId, cancellationToken)
                 ?? throw new NotFoundException(nameof(Category), request.CategoryId);
 
+            var oldCustomSubcategory = contact.Category.Name == OtherCategoryName
+                ? contact.Subcategory
+                : null;
+
             var subcategoryId = await ResolveSubcategoryAsync(category, request, cancellationToken);
 
             contact.Update(
@@ -69,6 +73,12 @@ namespace ContactList.Application.Features.Contacts.Commands.UpdateContact
             }
 
             await _contactRepository.UpdateAsync(contact, cancellationToken);
+
+            if (oldCustomSubcategory is not null)
+            {
+                await _subcategoryRepository.DeleteAsync(oldCustomSubcategory, cancellationToken);
+            }
+
             await _unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
